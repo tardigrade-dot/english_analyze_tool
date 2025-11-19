@@ -1,4 +1,3 @@
-import ollama
 import streamlit as st
 import json
 import pandas as pd
@@ -21,8 +20,6 @@ modelscope_client = OpenAI(
     base_url='https://api-inference.modelscope.cn/v1',
     api_key='ms-8f39ffd9-3da7-4774-a27d-bf50b68a5560',
 )
-
-ollama_client = ollama.Client()
 
 # 模型配置
 model_type = "modelscope"  # 或 "ollama"
@@ -203,12 +200,6 @@ def llm_english_analyze_with_time(englist_sentence, llm_type):
     llm_result = None
     try:
         match llm_type:
-            case "ollama":
-                response = ollama_client.chat(
-                    model=model_name,
-                    messages=[{'role': 'user', 'content': prompt}]
-                )
-                llm_result = response['message']['content']
             case "modelscope":
                 extra_body = {"enable_thinking": False, "thinking_budget": 1024}
                 response = modelscope_client.chat.completions.create(
