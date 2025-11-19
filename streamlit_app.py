@@ -434,12 +434,14 @@ if st.button("开始分析", type="primary"):
     st.header("2b. 🎴 高亮片段卡片展示")
     st.caption("每张卡片显示原句中的一个高亮部分及其语法角色与解释")
 
+    color_index = 0
     for idx, item in enumerate(structure_data):
         segment = item.get("segment", "").strip()
         is_highlight = item.get("highlight", False)
         
         if is_highlight and segment:
-            color = HIGHLIGHT_COLORS[idx % len(HIGHLIGHT_COLORS)]
+            color = HIGHLIGHT_COLORS[color_index % len(HIGHLIGHT_COLORS)]
+            color_index += 1
             role = item.get("role", "结构")
             explanation = item.get("explanation_cn", "无解释")
             
