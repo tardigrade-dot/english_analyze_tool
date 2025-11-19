@@ -430,6 +430,37 @@ if st.button("开始分析", type="primary"):
         st.warning("请升级 Streamlit 到 ≥1.34 以获得最佳 HTML 渲染效果！")
         st.markdown(highlighted_sentence, unsafe_allow_html=True)
 
+    # --- 2b. 高亮片段卡片展示 ---
+    st.header("2b. 🎴 高亮片段卡片展示")
+    st.caption("每张卡片显示原句中的一个高亮部分及其语法角色与解释")
+
+    for idx, item in enumerate(structure_data):
+        segment = item.get("segment", "").strip()
+        is_highlight = item.get("highlight", False)
+        
+        if is_highlight and segment:
+            color = HIGHLIGHT_COLORS[idx % len(HIGHLIGHT_COLORS)]
+            role = item.get("role", "结构")
+            explanation = item.get("explanation_cn", "无解释")
+            
+            card_html = f"""
+            <div style="
+                background-color: {color};
+                padding: 12px 16px;
+                margin-bottom: 8px;
+                border-radius: 12px;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            ">
+                <strong>原句片段:</strong> {html.escape(segment)}<br>
+                <strong>角色:</strong> {role}<br>
+                <strong>解释:</strong> {explanation}
+            </div>
+            """
+            try:
+                st.html(card_html)
+            except AttributeError:
+                st.markdown(card_html, unsafe_allow_html=True)
+
     st.divider()
 
     # --- 3. 词汇 ---
