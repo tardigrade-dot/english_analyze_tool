@@ -15,10 +15,11 @@ CACHE_TTL_SECONDS = 30
 if 'llm_cache' not in st.session_state:
     st.session_state.llm_cache = {}
 
+modelscope_key = st.secrets["modelscope"]["key"]
 # 客户端配置（请按需配置）
 modelscope_client = OpenAI(
     base_url='https://api-inference.modelscope.cn/v1',
-    api_key='ms-8f39ffd9-3da7-4774-a27d-bf50b68a5560',
+    api_key=modelscope_key
 )
 
 # 模型配置
