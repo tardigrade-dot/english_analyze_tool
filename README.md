@@ -8,3 +8,5 @@
 - 句子拆解
 
 ### https://english-analyze-tool.streamlit.app/
+
+![示例](assets/screenshot.png)
