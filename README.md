@@ -9,4 +9,4 @@
 
 ### https://english-analyze-tool.streamlit.app/
 
-![示例](assets/screenshot.png)
+![示例](assets/english-analyze-tool.png)
